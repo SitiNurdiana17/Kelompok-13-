@@ -29,13 +29,30 @@
                 <input type="text" placeholder="Konfirmasi Password"><br>
             </p>
 
+
+   <font color="white">Pilih file gambar</font>
+    <input type="file" id="file-field" onchange="previewImage(event)">
+
+<script type="text/javascript">
+    function previewImage() {
+        var reader = new FileReader();
+        var imageField = document.getElementsById('image-field')
+        reader.onload = function(){
+            if(reader.readystate=2){
+                imageField.src = reader.result;
+            }
+        } 
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
             <h4><u>Dengan mendaftar Anda setuju dengan <font color="red">Syarat, ketentuan dan Kebijakan dari</font>
             <font color="red">Batik Gallery & Kebijakan privasi</font></u></h4>
 
             <right><button id="myBtnn">Daftar</button>
  <script>
 document.getElementById("myBtnn").addEventListener("click", function() {
-  alert("Anta Telah Terdaftar");
+  alert("Anda Telah Terdaftar");
 });
 </script>
                 <a href="login.html"></a></right>
