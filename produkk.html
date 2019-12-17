@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>produk</title>
+    <link rel="stylesheet" href="diagramkategori.css">
     <link rel="stylesheet" href="produk.css">
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" type="text/css" href="home.css">
@@ -64,6 +65,29 @@ p {
     word-spacing: "Lato";
 }
 
+.nextback{
+    padding: 20px 20px 0px 20px;
+    }
+#back{
+    float: left;
+    font-family: 'Segoe UI';
+    background-color: rgb(183, 206, 207);
+    font-size: 15px;
+    color:rgb(22, 82, 105);
+}
+#next{
+    float: right;
+    font-family: 'Segoe UI';
+    background-color: rgb(183, 206, 207);
+    font-size: 15px;
+    color:rgb(22, 82, 105);
+    }
+
+.pilihanmenu {
+    font-family: 'Segoe UI'; 
+    padding-left: 15px;
+    padding-right: 10px;
+    }
 small {
     color: yellow;
 }
@@ -157,7 +181,7 @@ input[type=text] {
                <div class="list-produk">
             <img src="kemejapria.jpg" alt="kemejapria">
  
-            <a href="kategori.html"><h4>Kemeja Pria</h4>
+            <a href="kategori.html"><h4>Kemeja Pria</h4></a>
         </div>
 
                <div class="list-produk">
@@ -183,7 +207,11 @@ input[type=text] {
  
             <h4>Aksesoris</h4>
         </div>
+       
     </div>
+ <div class="nextback">
+        <button id="next"><a href="digramkategori.html">Diagram Kategori</a></button>
+
         <div class="badan">
         <h2><center>Terpopuler</h2></center>
             <div class="list-produk">
@@ -365,8 +393,62 @@ input[type=text] {
             <a class="tombol tombol-detail" href="#">Detail</a>
             <a class="tombol tombol-beli" href="#">Beli</a>
         </div>
+                     <div class="nextback">
+                     <button id="next"><a href="listkategori2">Produk Selanjutnya</a></button>
+      
+          
+        </div>
 </div>
 </div>
- 
+ <script src="js/jquery-3.4.1.min.js"></script>
+<!-- <script src="js/ajax-fetch.js"></script> -->
+<script type="text/javascript">
+    $(document).ready(function() {
+         $("#next").click(function() {
+          
+    })
+    $(document).ready(function(){
+        console.log('doc ready');
+    })
+    $.getJSON('listkategori2.json',function(data){
+        console.log(data);
+        })
+    $("#next").click(function(event){
+            // var hal=$(".pilihanmenu").attr('page');
+            // hal= Number(hal);
+            // // if (hal==""){
+            // //     hal = 2;
+            // // }
+            // // else{
+            // //     hal += 1;
+            // // }
+            // // $(".pilihanmenu").attr('page', hal);
+            // //     if (hal == 3) {
+            // //         $("#next").hide();
+            // //     }
+            // // menampilkan json di html
+           
+            $.ajax({
+                url: "listkategori2.json",
+                type: 'GET',
+                dataType: 'json',
+            })
+            .done(function(hasil) {
+                    console.log("success");
+                    var gabung = "";
+                    $.each(hasil, function(index, val) {
+                        gabung += ` <td class="list-produk"><img id="`+val.id+`" src="`+val.img+`" style="width:90px;height: 90px;"><br>Kimia</a></td>`;
+                    })
+                    
+                    $(".pilihanmenu").append(gabung);
+                    
+            })
+            
+            .fail(function(){
+                console.log("eror");
+            })
+        })
+    })
+</script>
 </body>
 </html>
